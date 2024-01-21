@@ -62,12 +62,16 @@ export const StyledCarTitle = styled.div`
   span {
     color: var(--accent);
   }
+
+  p {
+    margin: 0;
+  }
 `;
 
 export const StyledCarDescr = styled.p`
   display: flex;
   height: 40px;
-  color: rgba(18, 20, 23, 0.5);
+  color: var(--transp-black);
   font-size: 12px;
   line-height: 2;
   padding-bottom: 28px;
@@ -79,7 +83,7 @@ export const StyledLearnMore = styled.button`
   font-size: 14px;
   font-weight: 600;
 
-  color: white;
+  color: var(--white);
   background-color: var(--accent);
   border-radius: 12px;
   border: none;

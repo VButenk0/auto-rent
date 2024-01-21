@@ -1,14 +1,16 @@
 @import-normalize;
+@import "rsuite/dist/rsuite.css";
 
 :root {
+  --white: #fff;
   --black: #121417;
-  --transp-black: #12141780;
+  --transp-black: rgba(18, 20, 23, 0.5);
   --accent: #3470ff;
   --hover: rgba(11, 68, 205, 1);
 }
 
 body {
-  color: #121417;
+  color: var(--black);
   font-family: "Manrope", sans-serif;
   font-size: 14px;
   font-style: normal;

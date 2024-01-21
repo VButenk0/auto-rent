@@ -14,6 +14,4 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
-{
-}
 // basename="/auto-rent"

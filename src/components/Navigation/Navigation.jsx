@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { IoCarSport } from "react-icons/io5";
 import {
   StyledLogo,
