@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { SelectPicker } from "rsuite";
+import { Input, InputGroup, SelectPicker } from "rsuite";
 import makes from "../../data/makes.json";
-import { StyledForm, StyledFormBtn } from "./Filters.styled";
+import {
+  StyledForm,
+  StyledFormBtn,
+  StyledLabel,
+  StyledSpan,
+} from "./Filters.styled";
 
 const data = makes.map((item) => ({
   label: item,
@@ -18,36 +23,63 @@ const prices = [
 const Filters = ({ setSelectedFilters }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
+  const [selectedMinMileage, setSelectedMinMileage] = useState(null);
+  const [selectedMaxMileage, setSelectedMaxMileage] = useState(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setSelectedFilters({
       make: selectedMake,
       maxPrice: selectedMaxPrice,
+      minMileage: selectedMinMileage,
+      maxMileage: selectedMaxMileage,
     });
   };
 
   return (
     <StyledForm onSubmit={handleSearch}>
-      <SelectPicker
-        data={data}
-        size="lg"
-        style={{ width: 224, height: 42 }}
-        placeholder="Enter the text"
-        value={selectedMake}
-        onChange={(value) => setSelectedMake(value)}
-      />
+      <StyledSpan>
+        <StyledLabel htmlFor="brand">Car brand</StyledLabel>
+        <SelectPicker
+          id="brand"
+          data={data}
+          size="lg"
+          style={{ width: 224, height: 42 }}
+          placeholder="Enter the text"
+          value={selectedMake}
+          onChange={(value) => setSelectedMake(value)}
+        />
+      </StyledSpan>
+      <StyledSpan>
+        <StyledLabel htmlFor="price">Price/ 1 hour </StyledLabel>
+        <SelectPicker
+          id="price"
+          data={prices}
+          label="To"
+          size="lg"
+          searchable={false}
+          style={{ width: 125, height: 42 }}
+          placeholder="$"
+          value={selectedMaxPrice}
+          onChange={(value) => setSelectedMaxPrice(value)}
+        />
+      </StyledSpan>
 
-      <SelectPicker
-        label="To"
-        data={prices}
-        size="lg"
-        searchable={false}
-        style={{ width: 125, height: 42 }}
-        placeholder="$"
-        value={selectedMaxPrice}
-        onChange={(value) => setSelectedMaxPrice(value)}
-      />
+      <StyledSpan>
+        <StyledLabel htmlFor="mileage">Сar mileage / km</StyledLabel>
+        <InputGroup id="mileage" size="lg" style={{ width: 320 }}>
+          <Input
+            type="number"
+            placeholder="From"
+            onChange={(value) => setSelectedMinMileage(value)}
+          />
+          <Input
+            type="number"
+            placeholder="To"
+            onChange={(value) => setSelectedMaxMileage(value)}
+          />
+        </InputGroup>
+      </StyledSpan>
       <StyledFormBtn type="submit">Search</StyledFormBtn>
     </StyledForm>
   );

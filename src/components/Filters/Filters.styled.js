@@ -4,7 +4,7 @@ export const StyledForm = styled.form`
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   gap: 18px;
 
   padding-bottom: 50px;
@@ -14,6 +14,18 @@ export const StyledForm = styled.form`
     font-style: 18px;
     font-weight: 500;
   }
+`;
+
+export const StyledSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const StyledLabel = styled.label`
+  color: #8a8a89;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 export const StyledFormBtn = styled.button`

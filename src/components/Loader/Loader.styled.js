@@ -28,8 +28,8 @@ export const GlobalStyle = styled.div`
   body {
     font-family: "futura", sans-serif;
     margin: 0;
-    color: #3c4b32;
-    background: #ebf0e4;
+    color: var(--accent);
+    background: var(--white);
     background-image: url(https://www.simmosoffroadtours.com/static/images/topography.svg);
     background-size: 100% auto;
     background-repeat: repeat-y;

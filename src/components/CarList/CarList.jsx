@@ -39,8 +39,12 @@ const CarList = ({ selectedFilters }) => {
       !selectedFilters.make || car.make === selectedFilters.make;
     const priceCondition =
       !selectedFilters.maxPrice || car.rentalPrice <= selectedFilters.maxPrice;
+    const mileageCondition =
+      !selectedFilters.minMileage ||
+      !selectedFilters.maxMileage ||
+      selectedFilters.minMileage <= car.mileage <= selectedFilters.maxMileage;
 
-    return makeCondition && priceCondition;
+    return makeCondition && priceCondition && mileageCondition;
   });
 
   const handleHeartClick = (car) => {
@@ -61,32 +65,76 @@ const CarList = ({ selectedFilters }) => {
 
   return (
     <>
-      <StyledCarList>
-        {filteredAdverts.map(
-          ({
-            id,
-            img,
-            make,
-            model,
-            year,
-            rentalPrice,
-            address,
-            rentalCompany,
-            type,
-            mileage,
-            fuelConsumption,
-            engineSize,
-            accessories,
-            functionalities,
-            rentalConditions,
-            description,
-          }) => (
-            <StyledCarCard key={id}>
-              <StyledImgContainer>
-                <StyledImg src={img} alt={model} />
-                <StyledHeart
+      {!filteredAdverts.length ? (
+        <p>There are no such cars here</p>
+      ) : (
+        <StyledCarList>
+          {filteredAdverts.map(
+            ({
+              id,
+              img,
+              make,
+              model,
+              year,
+              rentalPrice,
+              address,
+              rentalCompany,
+              type,
+              mileage,
+              fuelConsumption,
+              engineSize,
+              accessories,
+              functionalities,
+              rentalConditions,
+              description,
+            }) => (
+              <StyledCarCard key={id}>
+                <StyledImgContainer>
+                  <StyledImg src={img} alt={model} />
+                  <StyledHeart
+                    onClick={() =>
+                      handleHeartClick({
+                        id,
+                        img,
+                        make,
+                        model,
+                        year,
+                        rentalPrice,
+                        address,
+                        rentalCompany,
+                        type,
+                        mileage,
+                        fuelConsumption,
+                        engineSize,
+                        accessories,
+                        functionalities,
+                        rentalConditions,
+                        description,
+                      })
+                    }
+                  >
+                    <use
+                      href={`${hearts}#icon-heart-${
+                        favorites.some((favorite) => favorite.id === id)
+                          ? "active"
+                          : "normal"
+                      }`}
+                    ></use>
+                  </StyledHeart>
+                </StyledImgContainer>
+                <StyledCarTitle>
+                  <p>
+                    {make} <span>{model}</span>, {year}
+                  </p>
+                  <p>${rentalPrice}</p>
+                </StyledCarTitle>
+                <StyledCarDescr>
+                  {address} | {rentalCompany} | {type} | {fuelConsumption} |
+                  {engineSize}
+                </StyledCarDescr>
+                <StyledLearnMore
                   onClick={() =>
-                    handleHeartClick({
+                    handleOpen({
                       id,
                       img,
                       make,
@@ -106,53 +154,13 @@ const CarList = ({ selectedFilters }) => {
                     })
                   }
                 >
-                  <use
-                    href={`${hearts}#icon-heart-${
-                      favorites.some((favorite) => favorite.id === id)
-                        ? "active"
-                        : "normal"
-                    }`}
-                  ></use>
-                </StyledHeart>
-              </StyledImgContainer>
-              <StyledCarTitle>
-                <p>
-                  {make} <span>{model}</span>, {year}
-                </p>
-                <p>${rentalPrice}</p>
-              </StyledCarTitle>
-              <StyledCarDescr>
-                {address} | {rentalCompany} | {type} | {fuelConsumption} |
-                {engineSize}
-              </StyledCarDescr>
-              <StyledLearnMore
-                onClick={() =>
-                  handleOpen({
-                    id,
-                    img,
-                    make,
-                    model,
-                    year,
-                    rentalPrice,
-                    address,
-                    rentalCompany,
-                    type,
-                    mileage,
-                    fuelConsumption,
-                    engineSize,
-                    accessories,
-                    functionalities,
-                    rentalConditions,
-                    description,
-                  })
-                }
-              >
-                Learn more
-              </StyledLearnMore>
-            </StyledCarCard>
-          )
-        )}
-      </StyledCarList>
+                  Learn more
+                </StyledLearnMore>
+              </StyledCarCard>
+            )
+          )}
+        </StyledCarList>
+      )}
       {filteredAdverts.length >= page * perPage && (
         <StyledLoadMore onClick={handleLoadMore}>Load more</StyledLoadMore>
       )}

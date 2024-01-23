@@ -7,6 +7,8 @@ const Catalog = () => {
   const [selectedFilters, setSelectedFilters] = useState({
     make: "",
     maxPrice: null,
+    minMileage: null,
+    maxMileage: null,
   });
 
   return (

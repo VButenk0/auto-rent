@@ -9,9 +9,9 @@ import store from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/auto-rent">
       <App />
     </BrowserRouter>
   </Provider>
 );
-// basename="/auto-rent"
+//
