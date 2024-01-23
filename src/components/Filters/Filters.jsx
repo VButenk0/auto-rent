@@ -23,8 +23,8 @@ const prices = [
 const Filters = ({ setSelectedFilters }) => {
   const [selectedMake, setSelectedMake] = useState("");
   const [selectedMaxPrice, setSelectedMaxPrice] = useState(null);
-  const [selectedMinMileage, setSelectedMinMileage] = useState(null);
-  const [selectedMaxMileage, setSelectedMaxMileage] = useState(null);
+  const [selectedMinMileage, setSelectedMinMileage] = useState("");
+  const [selectedMaxMileage, setSelectedMaxMileage] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -39,9 +39,9 @@ const Filters = ({ setSelectedFilters }) => {
   return (
     <StyledForm onSubmit={handleSearch}>
       <StyledSpan>
-        <StyledLabel htmlFor="brand">Car brand</StyledLabel>
+        <StyledLabel>Car brand</StyledLabel>
         <SelectPicker
-          id="brand"
+          name="brand"
           data={data}
           size="lg"
           style={{ width: 224, height: 42 }}
@@ -51,9 +51,9 @@ const Filters = ({ setSelectedFilters }) => {
         />
       </StyledSpan>
       <StyledSpan>
-        <StyledLabel htmlFor="price">Price/ 1 hour </StyledLabel>
+        <StyledLabel>Price/ 1 hour </StyledLabel>
         <SelectPicker
-          id="price"
+          name="price"
           data={prices}
           label="To"
           size="lg"
@@ -66,16 +66,20 @@ const Filters = ({ setSelectedFilters }) => {
       </StyledSpan>
 
       <StyledSpan>
-        <StyledLabel htmlFor="mileage">Сar mileage / km</StyledLabel>
+        <StyledLabel>Сar mileage / km</StyledLabel>
         <InputGroup id="mileage" size="lg" style={{ width: 320 }}>
           <Input
+            name="minMileage"
             type="number"
             placeholder="From"
+            value={selectedMinMileage}
             onChange={(value) => setSelectedMinMileage(value)}
           />
           <Input
+            name="maxMileage"
             type="number"
             placeholder="To"
+            value={selectedMaxMileage}
             onChange={(value) => setSelectedMaxMileage(value)}
           />
         </InputGroup>

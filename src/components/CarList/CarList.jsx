@@ -12,8 +12,10 @@ import {
   StyledImgContainer,
   StyledLearnMore,
   StyledLoadMore,
+  StyledNoSuchCars,
+  StyledNoSuchCarsText,
 } from "./CarList.styled";
-import hearts from "../../icons/hearts.svg";
+import icons from "../../icons/icons.svg";
 import { Modal } from "rsuite";
 import ModalHeader from "rsuite/esm/Modal/ModalHeader";
 import ModalBody from "../Modal/ModalBody";
@@ -40,9 +42,10 @@ const CarList = ({ selectedFilters }) => {
     const priceCondition =
       !selectedFilters.maxPrice || car.rentalPrice <= selectedFilters.maxPrice;
     const mileageCondition =
-      !selectedFilters.minMileage ||
-      !selectedFilters.maxMileage ||
-      selectedFilters.minMileage <= car.mileage <= selectedFilters.maxMileage;
+      (!selectedFilters.minMileage ||
+        car.mileage >= selectedFilters.minMileage) &&
+      (!selectedFilters.maxMileage ||
+        car.mileage <= selectedFilters.maxMileage);
 
     return makeCondition && priceCondition && mileageCondition;
   });
@@ -65,76 +68,32 @@ const CarList = ({ selectedFilters }) => {
 
   return (
     <>
-      {!filteredAdverts.length ? (
-        <p>There are no such cars here</p>
-      ) : (
-        <StyledCarList>
-          {filteredAdverts.map(
-            ({
-              id,
-              img,
-              make,
-              model,
-              year,
-              rentalPrice,
-              address,
-              rentalCompany,
-              type,
-              mileage,
-              fuelConsumption,
-              engineSize,
-              accessories,
-              functionalities,
-              rentalConditions,
-              description,
-            }) => (
-              <StyledCarCard key={id}>
-                <StyledImgContainer>
-                  <StyledImg src={img} alt={model} />
-                  <StyledHeart
-                    onClick={() =>
-                      handleHeartClick({
-                        id,
-                        img,
-                        make,
-                        model,
-                        year,
-                        rentalPrice,
-                        address,
-                        rentalCompany,
-                        type,
-                        mileage,
-                        fuelConsumption,
-                        engineSize,
-                        accessories,
-                        functionalities,
-                        rentalConditions,
-                        description,
-                      })
-                    }
-                  >
-                    <use
-                      href={`${hearts}#icon-heart-${
-                        favorites.some((favorite) => favorite.id === id)
-                          ? "active"
-                          : "normal"
-                      }`}
-                    ></use>
-                  </StyledHeart>
-                </StyledImgContainer>
-                <StyledCarTitle>
-                  <p>
-                    {make} <span>{model}</span>, {year}
-                  </p>
-                  <p>${rentalPrice}</p>
-                </StyledCarTitle>
-                <StyledCarDescr>
-                  {address} | {rentalCompany} | {type} | {fuelConsumption} |
-                  {engineSize}
-                </StyledCarDescr>
-                <StyledLearnMore
+      <StyledCarList>
+        {filteredAdverts.map(
+          ({
+            id,
+            img,
+            make,
+            model,
+            year,
+            rentalPrice,
+            address,
+            rentalCompany,
+            type,
+            mileage,
+            fuelConsumption,
+            engineSize,
+            accessories,
+            functionalities,
+            rentalConditions,
+            description,
+          }) => (
+            <StyledCarCard key={id}>
+              <StyledImgContainer>
+                <StyledImg src={img} alt={model} />
+                <StyledHeart
                   onClick={() =>
-                    handleOpen({
+                    handleHeartClick({
                       id,
                       img,
                       make,
@@ -154,18 +113,70 @@ const CarList = ({ selectedFilters }) => {
                     })
                   }
                 >
-                  Learn more
-                </StyledLearnMore>
-              </StyledCarCard>
-            )
-          )}
-        </StyledCarList>
+                  <use
+                    href={`${icons}#icon-heart-${
+                      favorites.some((favorite) => favorite.id === id)
+                        ? "active"
+                        : "normal"
+                    }`}
+                  ></use>
+                </StyledHeart>
+              </StyledImgContainer>
+              <StyledCarTitle>
+                <p>
+                  {make} <span>{model}</span>, {year}
+                </p>
+                <p>${rentalPrice}</p>
+              </StyledCarTitle>
+              <StyledCarDescr>
+                {address} | {rentalCompany} | {type} | {fuelConsumption} |
+                {engineSize}
+              </StyledCarDescr>
+              <StyledLearnMore
+                onClick={() =>
+                  handleOpen({
+                    id,
+                    img,
+                    make,
+                    model,
+                    year,
+                    rentalPrice,
+                    address,
+                    rentalCompany,
+                    type,
+                    mileage,
+                    fuelConsumption,
+                    engineSize,
+                    accessories,
+                    functionalities,
+                    rentalConditions,
+                    description,
+                  })
+                }
+              >
+                Learn more
+              </StyledLearnMore>
+            </StyledCarCard>
+          )
+        )}
+      </StyledCarList>
+      {filteredAdverts.length === 0 && selectedFilters && (
+        <StyledNoSuchCars>
+          <svg width="150" height="150">
+            <use href={`${icons}#no-car-icon`}></use>
+          </svg>
+          <StyledNoSuchCarsText>
+            There are no such cars here.
+            <br /> Change your filters and try again.
+          </StyledNoSuchCarsText>
+        </StyledNoSuchCars>
       )}
+
       {filteredAdverts.length >= page * perPage && (
         <StyledLoadMore onClick={handleLoadMore}>Load more</StyledLoadMore>
       )}
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal overflow={false} open={open} onClose={handleClose}>
         <ModalHeader />
         <Modal.Body>
           <ModalBody data={selectedCar} />

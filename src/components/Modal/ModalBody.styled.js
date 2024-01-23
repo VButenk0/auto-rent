@@ -35,7 +35,6 @@ export const StyledCarTitle = styled.h3`
 
 export const StyledCarTags = styled.p`
   display: flex;
-  width: 70%;
   height: 40px;
   color: var(--transp-black);
   font-size: 12px;

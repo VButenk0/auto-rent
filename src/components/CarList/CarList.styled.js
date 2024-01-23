@@ -120,3 +120,17 @@ export const StyledLoadMore = styled.button`
     color: var(--hover);
   }
 `;
+
+export const StyledNoSuchCars = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const StyledNoSuchCarsText = styled.p`
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+`;

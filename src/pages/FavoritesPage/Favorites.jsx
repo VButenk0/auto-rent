@@ -13,7 +13,7 @@ import {
   StyledImgContainer,
   StyledLearnMore,
 } from "../../components/CarList/CarList.styled";
-import hearts from "../../icons/hearts.svg";
+import icons from "../../icons/icons.svg";
 import { Modal } from "rsuite";
 import ModalBody from "../../components/Modal/ModalBody";
 import {
@@ -49,7 +49,7 @@ const Favorites = () => {
               <StyledImgContainer>
                 <StyledImg src={favorite.img} alt={favorite.model} />
                 <StyledHeart onClick={() => handleHeartClick(favorite)}>
-                  <use href={`${hearts}#icon-heart-active`}></use>
+                  <use href={`${icons}#icon-heart-active`}></use>
                 </StyledHeart>
               </StyledImgContainer>
               <StyledCarTitle>

@@ -38,12 +38,13 @@ export const GlobalStyle = styled.div`
 
 export const Container = styled.div`
   width: 100%;
+  height: 100vh;
 `;
 
 export const LoaderContainer = styled.div`
   width: 140px;
   height: 140px;
-  margin: 120px auto;
+  margin: 20% auto;
   text-align: center;
   color: var(--black);
 `;

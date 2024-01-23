@@ -22,7 +22,7 @@ export const StyledSpan = styled.span`
   gap: 4px;
 `;
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.p`
   color: #8a8a89;
   font-size: 14px;
   font-weight: 500;
