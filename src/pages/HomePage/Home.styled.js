@@ -22,13 +22,13 @@ export const StyledSubTitle = styled.h2`
   font-weight: 500;
   text-align: center;
 
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 `;
 
 export const StyledDescr = styled.p`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   text-align: center;
 
   span {
@@ -47,9 +47,9 @@ export const StyledList = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   align-items: baseline;
-  padding: 10px 0 60px;
+  padding: 10px 0 50px;
   gap: 50px;
-  row-gap: 0;
+  row-gap: 5px;
 `;
 
 export const StyledListItem = styled.li`
@@ -63,5 +63,38 @@ export const StyledListItem = styled.li`
     color: var(--accent);
     font-size: 18px;
     font-weight: 600;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const StyledHomeButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 12px;
+  margin: 0 auto 20px;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  color: var(--white);
+  background-color: var(--accent);
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:active {
+    background-color: var(--hover);
   }
 `;

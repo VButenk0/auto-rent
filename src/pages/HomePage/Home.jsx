@@ -1,6 +1,7 @@
 import React from "react";
 import {
   StyledDescr,
+  StyledHomeButton,
   StyledList,
   StyledListItem,
   StyledListTitle,
@@ -8,71 +9,71 @@ import {
   StyledTitle,
 } from "./Home.styled";
 import Container from "../../components/Container/Container";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <>
       <Container>
         <StyledTitle>
-          Ласкаво просимо в <span>AutoRent</span>
+          Welcome to the <span>AutoRent</span>
         </StyledTitle>
         <StyledSubTitle>
-          – вашому надійному партнерові у світі мобільності в Україні!
+          - your reliable partner in the world of mobility in Ukraine!
         </StyledSubTitle>
         <StyledDescr>
-          Ми - професійна компанія, що спеціалізується на оренді автомобілів,
+          We are a professional company specializing in car rental,
           <br />
-          пропонуючи розширений асортимент транспортних засобів для ваших
-          потреб.
+          offering an extended range of vehicles for your needs.
         </StyledDescr>
-        <StyledListTitle>Наші переваги:</StyledListTitle>
+        <StyledListTitle>Our advantages:</StyledListTitle>
         <StyledList>
           <StyledListItem>
-            <h3>Широкий вибір автомобілів</h3>
+            <h3>Wide range of cars</h3>
             <p>
-              Ви можете обрати ідеальний автомобіль для своїх подорожей серед
-              нашого різноманітного парку, включаючи економічні моделі,
-              комфортні седани, просторі кросовери та елітні представницькі
-              авто.
+              You can choose the perfect car for your travels from our diverse
+              fleet, including economical models, comfortable sedans, spacious
+              crossovers, and luxury executive cars.
             </p>
           </StyledListItem>
           <StyledListItem>
-            <h3>Гнучка система оренди</h3>
+            <h3>Flexible rental system</h3>
             <p>
-              Наша компанія пропонує різні терміни оренди, включаючи
-              короткострокову та довгострокову оренду. Ми прагнемо надати вам
-              максимальний комфорт і забезпечити ваші індивідуальні потреби.
+              Our company offers various rental periods, including short-term
+              and long-term leases. We strive to provide you with maximum
+              comfort and meet your individual needs.
             </p>
           </StyledListItem>
           <StyledListItem>
-            <h3>Чесні та прозорі умови</h3>
+            <h3>Fair and transparent conditions</h3>
             <p>
-              Наші тарифи включають в себе всі необхідні витрати, без прихованих
-              платежів. Ви можете бути впевнені, що ціна, яку ви бачите, - це
-              ціна, яку ви платите.
+              Our rates include all necessary expenses, without hidden fees. You
+              can be sure that the price you see is the price you pay.
             </p>
           </StyledListItem>
           <StyledListItem>
-            <h3>Обслуговування високого рівня</h3>
+            <h3>High-level service</h3>
             <p>
-              Команда наших професіоналів завжди готова надати вам відмінний
-              сервіс. Ми віримо в індивідуальний підхід до кожного клієнта та
-              робимо все можливе для вашого комфорту.
+              Our team of professionals is always ready to provide you with
+              excellent service. We believe in an individual approach to each
+              client and do everything possible for your comfort.
             </p>
           </StyledListItem>
           <StyledListItem>
-            <h3>Безпека та надійність</h3>
+            <h3>Safety and reliability</h3>
             <p>
-              Всі наші автомобілі проходять регулярні технічні огляди та
-              обслуговування, щоб гарантувати вашу безпеку на дорозі.
+              All our vehicles undergo regular technical inspections and
+              maintenance to ensure your safety on the road.
             </p>
           </StyledListItem>
         </StyledList>
         <StyledDescr>
-          Нехай ваша подорож стане незабутньою з <span>AutoRent</span>.<br />
-          Забронюйте свій автомобіль вже сьогодні та відчуйте вільність руху
-          разом з нами!
+          Make your trip unforgettable with <span>AutoRent</span>.<br />
+          Book your car today and feel the freedom of movement with us!
         </StyledDescr>
+        <StyledHomeButton>
+          <Link to="/catalog">Rent a car now</Link>
+        </StyledHomeButton>
       </Container>
     </>
   );
