@@ -111,7 +111,7 @@ export const StyledLoadMore = styled.button`
   cursor: pointer;
 
   margin: 0 auto;
-  padding-bottom: 150px;
+  padding-bottom: 40px;
 
   transition: all 0.2s ease-out;
 

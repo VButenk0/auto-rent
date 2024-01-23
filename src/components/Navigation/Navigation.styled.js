@@ -7,7 +7,7 @@ export const StyledNavigation = styled.div`
   align-items: center;
   gap: 50px;
   padding: 10px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border-bottom: 2px solid #3470ff;
 
   nav {
