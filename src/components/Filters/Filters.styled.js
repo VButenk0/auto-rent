@@ -4,6 +4,7 @@ export const StyledForm = styled.form`
   display: flex;
   margin: 0 auto;
   justify-content: center;
+  align-items: center;
   gap: 18px;
 
   padding-bottom: 50px;
@@ -19,7 +20,7 @@ export const StyledFormBtn = styled.button`
   background-color: var(--accent);
   border: none;
   border-radius: 12px;
-  padding: 14px 44px;
+  padding: 11px 44px;
 
   color: var(--white);
   font-size: 14px;

@@ -31,7 +31,8 @@ const Filters = ({ setSelectedFilters }) => {
     <StyledForm onSubmit={handleSearch}>
       <SelectPicker
         data={data}
-        style={{ width: 224, height: 48 }}
+        size="lg"
+        style={{ width: 224, height: 42 }}
         placeholder="Enter the text"
         value={selectedMake}
         onChange={(value) => setSelectedMake(value)}
@@ -40,8 +41,9 @@ const Filters = ({ setSelectedFilters }) => {
       <SelectPicker
         label="To"
         data={prices}
+        size="lg"
         searchable={false}
-        style={{ width: 125, height: 48 }}
+        style={{ width: 125, height: 42 }}
         placeholder="$"
         value={selectedMaxPrice}
         onChange={(value) => setSelectedMaxPrice(value)}
