@@ -4,7 +4,6 @@ export const StyledCarList = styled.ul`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 274px);
-  grid-template-rows: repeat(3, 426px);
   column-gap: 29px;
   row-gap: 50px;
   padding-bottom: 100px;
@@ -62,9 +61,14 @@ export const StyledCarTitle = styled.div`
   span {
     color: var(--accent);
   }
-
   p {
     margin: 0;
+  }
+  p:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 5px;
   }
 `;
 
@@ -88,6 +92,7 @@ export const StyledLearnMore = styled.button`
   border-radius: 12px;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease-out;
 
   &:hover,
   &:active {
@@ -107,6 +112,8 @@ export const StyledLoadMore = styled.button`
 
   margin: 0 auto;
   padding-bottom: 150px;
+
+  transition: all 0.2s ease-out;
 
   &:hover,
   &:active {

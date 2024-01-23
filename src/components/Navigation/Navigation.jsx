@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <StyledNavigation>
       <StyledLogo to={"/"}>
-        <IoCarSport style={{ fontSize: "32px", color: "#3470ff" }} />
+        <IoCarSport style={{ fontSize: "42px", color: "#3470ff" }} />
         <h2>AutoRent</h2>
       </StyledLogo>
       <nav>

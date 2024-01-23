@@ -22,21 +22,29 @@ export const StyledLogo = styled(NavLink)`
   align-items: center;
   gap: 5px;
   font-size: 20px;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
   font-size: 16px;
-  font-weight: 500;
-  padding: 5px 7px;
+  font-weight: 600;
+  padding: 5px 10px;
   border-radius: 10px;
   transition: all 0.2s ease-out;
 
   &.active {
     color: white;
     background-color: var(--accent);
+    text-decoration: none;
   }
-  &:hover {
+  &:hover,
+  &:active {
     color: white;
     background-color: var(--hover);
+    text-decoration: none;
   }
 `;

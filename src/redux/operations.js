@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toggleFavorite } from "./slice";
 
 export const getAdvertsThunk = createAsyncThunk(
   "getAdverts",
@@ -20,3 +21,7 @@ export const getAdvertsThunk = createAsyncThunk(
     }
   }
 );
+
+export const toggleFavoriteThunk = (car) => (dispatch) => {
+  dispatch(toggleFavorite(car));
+};

@@ -96,12 +96,16 @@ export const StyledRentalBtn = styled.button`
   border: none;
   border-radius: 12px;
 
+  transition: all 0.2s ease-out;
+
   a {
+    color: inherit;
     text-decoration: none;
   }
 
   &:hover,
   &:active {
+    color: var(--white);
     background-color: var(--hover);
   }
 `;

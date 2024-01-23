@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAdverts } from "../../redux/selectors";
-import { getAdvertsThunk } from "../../redux/operations";
+import { selectAdverts, selectFavorites } from "../../redux/selectors";
+import { getAdvertsThunk, toggleFavoriteThunk } from "../../redux/operations";
 import {
   StyledCarCard,
   StyledCarDescr,
@@ -18,23 +18,34 @@ import { Modal } from "rsuite";
 import ModalHeader from "rsuite/esm/Modal/ModalHeader";
 import ModalBody from "../Modal/ModalBody";
 
-const CarList = () => {
+const CarList = ({ selectedFilters }) => {
   const dispatch = useDispatch();
   const adverts = useSelector(selectAdverts);
+  const favorites = useSelector(selectFavorites);
 
   const [page, setPage] = useState(1);
   const perPage = 12;
+  const [open, setOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
 
   useEffect(() => {
     dispatch(getAdvertsThunk(page, perPage));
   }, [dispatch, page]);
 
-  const startIndex = 0;
-  const endIndex = page * perPage;
-  const paginatedAdverts = adverts.slice(startIndex, endIndex);
+  const displayedAdverts = adverts.slice(0, page * perPage);
 
-  const [open, setOpen] = useState(false);
-  const [selectedCar, setSelectedCar] = useState(null);
+  const filteredAdverts = displayedAdverts.filter((car) => {
+    const makeCondition =
+      !selectedFilters.make || car.make === selectedFilters.make;
+    const priceCondition =
+      !selectedFilters.maxPrice || car.rentalPrice <= selectedFilters.maxPrice;
+
+    return makeCondition && priceCondition;
+  });
+
+  const handleHeartClick = (car) => {
+    dispatch(toggleFavoriteThunk(car));
+  };
 
   const handleOpen = (data) => {
     setSelectedCar(data);
@@ -43,13 +54,15 @@ const CarList = () => {
   const handleClose = () => setOpen(false);
 
   const handleLoadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+    if (filteredAdverts.length >= page * perPage) {
+      setPage((prevPage) => prevPage + 1);
+    }
   };
 
   return (
     <>
       <StyledCarList>
-        {paginatedAdverts.map(
+        {filteredAdverts.map(
           ({
             id,
             img,
@@ -71,15 +84,42 @@ const CarList = () => {
             <StyledCarCard key={id}>
               <StyledImgContainer>
                 <StyledImg src={img} alt={model} />
-                <StyledHeart width="18" height="18">
-                  <use href={`${hearts}#icon-heart-normal`}></use>
+                <StyledHeart
+                  onClick={() =>
+                    handleHeartClick({
+                      id,
+                      img,
+                      make,
+                      model,
+                      year,
+                      rentalPrice,
+                      address,
+                      rentalCompany,
+                      type,
+                      mileage,
+                      fuelConsumption,
+                      engineSize,
+                      accessories,
+                      functionalities,
+                      rentalConditions,
+                      description,
+                    })
+                  }
+                >
+                  <use
+                    href={`${hearts}#icon-heart-${
+                      favorites.some((favorite) => favorite.id === id)
+                        ? "active"
+                        : "normal"
+                    }`}
+                  ></use>
                 </StyledHeart>
               </StyledImgContainer>
               <StyledCarTitle>
                 <p>
                   {make} <span>{model}</span>, {year}
                 </p>
-                <p>{rentalPrice}</p>
+                <p>${rentalPrice}</p>
               </StyledCarTitle>
               <StyledCarDescr>
                 {address} | {rentalCompany} | {type} | {fuelConsumption} |
@@ -113,7 +153,7 @@ const CarList = () => {
           )
         )}
       </StyledCarList>
-      {adverts.length >= endIndex && (
+      {filteredAdverts.length >= page * perPage && (
         <StyledLoadMore onClick={handleLoadMore}>Load more</StyledLoadMore>
       )}
 

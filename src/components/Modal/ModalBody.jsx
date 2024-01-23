@@ -59,7 +59,7 @@ const ModalBody = ({ data }) => {
           Mileage: <span>{mileage}</span>
         </StyledConditionItem>
         <StyledConditionItem>
-          Price: <span>{rentalPrice}</span>
+          Price: <span>${rentalPrice}</span>
         </StyledConditionItem>
       </StyledConditionsList>
       <StyledRentalBtn>
