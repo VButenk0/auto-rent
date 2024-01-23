@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/auto-rent/static/css/main.9dc9fafc.css",
-    "main.js": "/auto-rent/static/js/main.ea10921d.js",
+    "main.js": "/auto-rent/static/js/main.c37d2bee.js",
     "static/media/hearts.svg": "/auto-rent/static/media/hearts.1aa18d6ed3b435cc716d2da581a5163c.svg",
     "index.html": "/auto-rent/index.html",
     "main.9dc9fafc.css.map": "/auto-rent/static/css/main.9dc9fafc.css.map",
-    "main.ea10921d.js.map": "/auto-rent/static/js/main.ea10921d.js.map"
+    "main.c37d2bee.js.map": "/auto-rent/static/js/main.c37d2bee.js.map"
   },
   "entrypoints": [
     "static/css/main.9dc9fafc.css",
-    "static/js/main.ea10921d.js"
+    "static/js/main.c37d2bee.js"
   ]
 }
